@@ -1,0 +1,1 @@
+document.write('<div class="navi-box"></div> <nav id="navi"><div class="header-logo">«psythea»</div><div class="header-list"><ul><li><a href="index.html"><strong>トップ</strong></a></li><li><a href="documents.html"><strong>文書</strong></a></li><li><a href="memo.html"><strong>備忘</strong></a></li><li><a href="random.html"><strong>雑記</strong></a></li></ul></div></nav>');
