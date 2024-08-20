@@ -1,0 +1,193 @@
+/*
+body{
+  font-family: "Noto Serif", "Noto Serif Armenian", "Noto Serif JP", serif;
+}
+
+
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/	cmunorm.otf');
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsx.otf');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsi.otf');
+    font-style: italic, oblique;
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunbxo.otf');
+    font-weight: bold;
+    font-style: italic, oblique;
+  }
+*/
+
+@font-face {
+  font-family: kelvinch;
+  src: url('./kelvinch/Kelvinch-Roman.otf');
+}
+
+/*
+"kelvinch" is lisenced under the SIL Open Font License 1.1
+by https://www.fontsquirrel.com/fonts/kelvinch
+*/
+
+body {
+    font-family: palatino, kelvinch, "Noto Serif Armenian", serif;
+    font-size: large;
+    margin: 0px;
+}
+
+.index-main{
+  margin: 10px;
+}
+
+.memo-main{
+  margin: 10px;
+}
+
+.docs-main{
+  margin: 10px;
+}
+
+.random-main{
+  margin: 10px;
+}
+
+.main{
+  margin: 10px;
+}
+
+
+header{
+  height: 87px;
+}
+
+a{
+  text-decoration: none;
+}
+
+p{
+  margin:0 0 2px;
+}
+
+blockquote{
+  background-color: #f0f0f0;
+  border-left: 5px solid black;
+  margin-left: 5pt;
+  padding: 10pt;
+}
+
+h1{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+h2{
+  margin: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+h3{
+  margin: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+h4{
+  margin: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+h5{
+  margin: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+h6{
+  margin: 5px;
+  margin-bottom: 5px;
+  margin-left: 0pt;
+}
+
+nav{
+  position: fixed;
+  float: left;
+}
+
+.navi-box{
+  position: fixed;
+  width: 100vw;
+  height: 90px;
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.header-logo{
+  font-size: 80px;
+  float: left;
+  background-color: black;
+  color: white;
+}
+
+.header-list{
+  padding-top: 24px;
+  padding-right: 20px;
+  float: left;
+  background-color: white;
+}
+
+.header-list li{
+  list-style: none;
+  float: left;
+  padding: 0px 10px;
+  font-size: 30px;
+}
+
+.header-list a{
+  color: black;
+}
+
+ul{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  margin-top: 0px; 
+  margin-bottom: 0pt;
+}
+
+figure {
+	float: right;
+	margin: 0 0 15px 15px;
+}
+
+figcaption {
+  text-align: center
+}
+
+a.anchor {
+  display: block;
+  padding-top: 140px;
+  margin-top: -140px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 4px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px 10px;
+  text-align: center;
+}
