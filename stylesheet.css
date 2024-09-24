@@ -62,9 +62,38 @@ body {
   margin: 10px;
 }
 
+.class1 {
+  margin: 0px;
+  width: 30%;
+}
+
+iframe{
+  border: none;
+}
+
+.header iframe{
+  margin: 0px;
+  height: 90px;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+}
+
+.content{
+  margin: 0px;
+  height: calc(100vh - 87px);
+}
 
 header{
-  height: 87px;
+  height: 90px;
+}
+
+.header{
+  height: 90px;
+}
+
+.content{
+  flex-grow: 1;
 }
 
 a{
@@ -79,6 +108,13 @@ blockquote{
   background-color: #f0f0f0;
   border-left: 5px solid black;
   margin-left: 5pt;
+  padding: 10pt;
+}
+
+.thm {
+  background-color: white;
+  border-style: dotted;
+  margin: 10pt;
   padding: 10pt;
 }
 
@@ -189,13 +225,34 @@ a.anchor {
   margin-top: -140px;
 }
 
-table {
+.timetable {
   border-collapse: collapse;
   border: 4px solid black;
 }
 
-th, td {
+.timetable th, .timetable td {
   border: 1px solid black;
   padding: 8px 10px;
   text-align: center;
+}
+
+.schedule {
+  border-collapse: collapse;
+  padding: 3px 5px;
+}
+
+.schedule th {
+  border-bottom: 1px solid black;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.schedule tr {
+  text-align: left;
+  padding: 3px 5px;
+}
+
+.schedule td {
+  text-align: left;
+  padding: 0px 5px;
 }
