@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>«psythea»</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian&family=Noto+Serif+JP:wght@600&family=Noto+Serif:ital@0;1&display=swap');
+    </style>
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          <script>
+              MathJax = {
+                tex: {
+                  inlineMath: [['$', '$'], ["\\(", "\\)"]],
+                  processEscapes: true,
+                  autoload:{},
+                  packages:{'[+]':['xypic']}
+                },
+                loader:{
+                  load:['[tex]/html','[custom]/xypic.js'],
+                  paths:{custom:'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.0/build/'}
+                }
+              }
+            </script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <iframe src="header.html"></iframe>
+    </div>
+
+    <div class="main">
+      <h1><a href="memo.html">備忘</a> — 巡回加群の \(\mathrm{Tor}_1, \mathrm{Ext}^1\) による平坦性・入射性・射影性判定 [2024/10/14]</h1>
+      <div hidden>
+      $$
+        \newcommand{\cover}[1]{\mathfrak{#1}}
+        \newcommand{\cat}[1]{\mathbf{#1}}
+        \newcommand{\sheaf}[1]{\mathcal{#1}}
+        \newcommand{\id}{\mathrm{id}}
+        \newcommand{\uncommon}{\nobreak\hspace{0pt}\textsuperscript{\textdagger}}
+        \newcommand{\opp}{\mathrm{op}}
+        \renewcommand{\epsilon}{\varepsilon}
+        \newcommand{\xrightrightarrow}[1]{\overset{#1}{\rightrightarrows}}
+        \newcommand{\isom}[1]{\underset{#1}{\cong}}
+        \newcommand{\projsp}{\mathbb{P}}
+        \newcommand{\imply}{\Rightarrow}
+        \newcommand{\Z}{\mathbb{Z}}
+        \newcommand{\Q}{\mathbb{Q}}
+        \DeclareMathOperator{\obj}{Obj}
+        \DeclareMathOperator{\mor}{Mor}
+        \DeclareMathOperator{\coeq}{Coeq}
+        \DeclareMathOperator{\coeqmor}{coeq}
+        \DeclareMathOperator{\spec}{Spec}
+        \DeclareMathOperator{\gal}{Gal}
+        \DeclareMathOperator{\aut}{Aut}
+        \DeclareMathOperator{\conn}{Conn}
+        \DeclareMathOperator{\supp}{supp}
+        \DeclareMathOperator{\ext}{Ext}
+        \DeclareMathOperator{\tor}{Tor}
+        \DeclareMathOperator{\im}{im}
+        \DeclareMathOperator{\projd}{pd}
+        \DeclareMathOperator{\injd}{id}
+        \DeclareMathOperator{\gld}{gl.dim}
+        \renewcommand{\hom}{\mathop{\mathrm{Hom}}\nolimits}$$
+      </div>
+
+      <div class="tableofcontents">
+        <h2>目次</h2>
+        <ul>
+          <li><a href="#flat">平坦性判定法</a></li>
+          <li><a href="#inj">入射性判定法</a></li>
+          <li><a href="#proj">射影性判定法及び反例</a></li>
+          <li><a href="#gldim">応用: 大域次元の特徴付け</a></li>
+          <li><a href="#dbc">「双対 Baer 判定法」はいつ成立するか</a></li>
+        </ul>
+      </div>
+
+      <p>
+        <h2>平坦性判定法</h2><a id="flat"></a>
+        　平坦加群のよく知られた特徴付けとして以下のようなものがある．
+        <div class="thm">
+          <h4>命題 1: 平坦加群の特徴付け</h4>
+          　可換環 $A$ と \(A\) 加群 \(M\) に対して以下は同値である:
+          <ol>
+            <li>\(M\) は平坦加群である．</li>
+            <li>任意の \(i\geq 1\) と任意の \(A\) 加群 \(N\) に対して \(\tor^A_i(M,N)=0\) である．</li>
+            <li>任意の \(A\) のイデアル \(I\) に対して \(\tor^A_1(M,A/I)=0\) である．</li>
+          </ol>
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　平坦性が任意のイデアル \(I\) に対する包含写像 \(I \to A\) の単射性が保たれること ([AtM, 2.19], [Stacks, <a href="https://stacks.math.columbia.edu/tag/00HD" target="_blank">10.39.5</a>] などを参照) で特徴付けられることを用いて，\(0 \to I \to A \to A/I \to 0\) の長完全列を見ればすぐに分かる．詳細は [Stacks, <a href="https://stacks.math.columbia.edu/tag/00M5" target="_blank">10.75.8</a>] などを見よ．
+        </p>
+        </div>
+      </p>
+      <p>
+        　この命題を見て自然に思い浮かぶ疑問として，次のようなものがある．即ち，上述の命題の 3. と同様の判定法が入射加群や射影加群についても成り立つか否かということである．これに対する答えは次の通り: <b>入射加群に関しては成り立つが，射影加群に関しては成り立たない</b>．
+      </p>
+
+      <h2>入射性判定法</h2><a id="inj"></a>
+      <p>
+        　先ず入射加群について考えよう．入射加群に関して成立する著しい性質が Baer の判定法である．
+        <div class="thm">
+          <h4>命題 2: Baer の判定法</h4>
+          　可換環 \(A\) と \(A\) 加群 \(N\) に対して以下は同値である:
+          <ol>
+            <li>\(N\) は入射加群である．</li>
+            <li>任意の \(A\) のイデアル \(I\) と任意の \(A\) 加群の射 \(f\colon I\to N\) に対して，\(A\) 加群の射 \(\tilde{f}\colon A \to N\) で \(\tilde{f}|_I = f\) となるものが存在する．
+              $$
+                \begin{xy}
+                  \xymatrix {
+                    I\ \ar@{>->}[r] \ar[d]_f& A \ar@{.>}[dl]^{\tilde{f}}\\
+                    N
+                  }
+                \end{xy}
+              $$
+            </li>
+          </ol>
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　1. が 2. を導くことは明らかであるので，逆を示せば良い．即ち，2. を仮定した上で，次のことを示す: 任意の \(A\) 加群 \(M\) とその部分 \(A\) 加群 \(M'\)，及び \(A\) 加群の射 \(\varphi \colon M' \to N\) に対して，\(A\) 加群の射 \(\tilde{\varphi}\colon M \to N\) で \(\tilde{\varphi}|_{M'}=\varphi\) となるものが存在する．
+            $$
+                \begin{xy}
+                  \xymatrix {
+                    M'\ \ar@{>->}[r] \ar[d]_{\varphi}& M \ar@{.>}[dl]^{\tilde{\varphi}}\\
+                    N
+                  }
+                \end{xy}
+              $$
+          </p>
+          <p>
+            　Zorn の補題を用いて \(\varphi\) が拡張されるような \(M\) の部分加群のうちで極大なものを構成し，それが \(M\) と一致することを示すという方針で証明する．集合 \(\Sigma\) を
+            $$
+              \begin{align*}
+                \Sigma = \{(L, (\psi\colon L\to N)) \mid M' \subseteq L \subseteq M, \psi|_{M'}=\varphi\}
+              \end{align*}
+            $$
+            と定める．そして，\((L_0, (\psi_0\colon L_0\to N)), (L_1, (\psi_1\colon L_1\to N)) \in \Sigma\) に対して
+            $$
+              \begin{align*}
+              (L_0, \psi_0) \leq (L_1, \psi_1) \Leftrightarrow L_0 \subseteq L_1\ \text{且つ}\ \psi_1|_{L_0}=\psi_0
+              \end{align*}
+            $$
+            とすることによって \(\Sigma\) に半順序構造を入れる．\((M,\varphi)\in\Sigma\) であるので \(\Sigma\neq \emptyset\) である．また，\(\Sigma\) 内の任意の全順序部分集合に対して，その全ての元の合併を取ればそれがその全順序部分集合の上界を与えるので \(\Sigma\) は Zorn の補題の仮定を満たしており，従って極大元 \((\tilde{L}, \tilde{\psi})\) が存在する．
+          </p>
+          <p>
+            　如上の \((\tilde{L}, \tilde{\psi})\) に関して，実は \(\tilde{L}=M\) であることを背理法で証明しよう．或る \(m\in M \setminus \tilde{L}\) が取れたと仮定する．$A$ のイデアル $I$ を
+            $$
+              \begin{align*}
+                I = \{a \in A \mid am \in \tilde{L}\}
+              \end{align*}
+            $$
+            と定め，射 $f\colon I \to N$ を 
+            $$
+              \begin{align*}
+                f(a) = \tilde{\psi}(am)
+              \end{align*}
+            $$
+            とする．このとき仮定より $f$ は或る $\tilde{f}\colon A \to N$ に拡張される．これを用いて $\tilde{\psi}'\colon \tilde{L}+Ax \to N$ を 
+            $$
+              \begin{align*}
+                \tilde{\psi}'(l+am) = \tilde{\psi}(l)+\tilde{f}(a)\quad(l\in L,\ a\in A)
+              \end{align*}
+            $$
+            と定義する (これは well-defined である)．また，$\tilde{\psi}'|_{\tilde{L}} = \tilde{\psi}$ であるので $(\tilde{L}, \tilde{\psi})<(\tilde{L}+Am, \tilde{\psi}')$ となるが，これは $(\tilde{L}, \tilde{\psi})$ の極大性に反する．従って $\tilde{L}=M$ であるので，1. が示せた．
+          </p>
+        </div>
+      </p>
+
+      <p>
+        　これを用いれば次のことが示せる．
+        <div class="thm">
+          <h4>命題 3: 入射加群の特徴付け</h4>
+          　可換環 $A$ と $A$ 加群 $N$ に対して以下は同値である:
+          <ol>
+            <li>$N$ は入射加群である．</li>
+            <li>任意の $i\geq 1$ と任意の $A$ 加群 $M$ に対して $\ext_A^i(M, N)=0$ である．</li>
+            <li>$A$ の任意のイデアル $I$ に対して $\ext_A^1(A/I, N)=0$ である．</li>
+          </ol>
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          　長完全列を取り Baer の判定法を用いればすぐに分かる．
+        </div>
+      </p>
+
+      <h2>射影性判定法及び反例</h2><a id="proj"></a>
+      <p>
+        　上の命題と同様の証明によって次の命題を示すことが出来る．
+        <div class="thm">
+          <h4>命題 4: 射影加群の特徴付け</h4>
+          　可換環 $A$ と $A$ 加群 $M$ に対して以下は同値である:
+          <ol>
+            <li>$M$ は射影加群である．</li>
+            <li>任意の $i\geq 1$ と任意の $A$ 加群 $N$ に対して $\ext_A^i(M, N)=0$ である．</li>
+          </ol>
+        </div>
+        しかしながら 3. に相当する条件から $M$ の射影性を結論付けることは出来ない．その反例を与えよう．
+        <div class="thm">
+          <h4>例:「双対 Baer 判定法」の反例</h4>
+          　$A=\Z, M=\Q$ が「双対 Baer 判定法」の反例を与える．即ち，任意のイデアル $I\subseteq \Z$ に対して $\ext_{\Z}^1(\Q, \Z/I)=0$ であるにも拘らず $\Q$ は射影的ではない．
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　$\Z$ の任意のイデアル $I$ は $I=0$ か $I=N\Z\ (N\in\Z_{\geq 1})$ という形をしているので，それぞれに関して $\ext_{\Z}^1(\Q, \Z/I)=0$ を示す．
+          </p>
+          <p>
+            　$I=0$ の場合，$\Z/I = \Z$ の入射分解は
+            $$
+              \begin{align*}
+                0 \to \Z \to \Q \to \Q/\Z \to 0
+              \end{align*}
+            $$
+            で与えられるので，
+            $$
+              \begin{align*}
+                \ext_{\Z}^1(\Q, \Z) = \frac{\hom_{\Z}(\Q, \Q/\Z)}{\im(\hom_{\Z}(\Q, \Q)\to\hom_{\Z}(\Q, \Q/\Z))}
+              \end{align*}
+            $$
+            であるが，$\Q\to\Q/\Z$ は必ず $\Q\to\Q$ に持ち上げられるので $\ext_{\Z}^1(\Q, \Z)=0$ である．
+          </p>
+          <p>
+            　$I=N\Z$ の場合，$\Z/I = \Z/N\Z$ の入射分解は
+            $$
+              \begin{align*}
+                0 \to \Z/N\Z \xrightarrow{1\mapsto 1/N} \Q/\Z \xrightarrow{\times N} \Q/\Z \to 0
+              \end{align*}
+            $$
+            で与えられ，先ほどと同様にして $\ext_{\Z}^1(\Q, \Z/N\Z)=0$ が分かる．
+          </p>
+          <p>
+            　$\Q$ が射影的ではないことは，次の可換図式を満たす $\Q \to \Z$ が存在しないことから分かる．
+            $$
+              \begin{xy}
+                \xymatrix {
+                  \Q \ar@{.>}[d]\ar[rd]^{\id_{\Q}}\\
+                  \Z^{\oplus\Q} \ar@{->>}[r] & \Q
+                }
+              \end{xy}
+            $$
+            因みにこの例は「Noether 環上の有限生成平坦加群は射影的である」という事実の有限性を外した場合の反例を与えている．
+          </p>
+        </div>
+      </p>
+
+      <h2>応用: 大域次元の特徴付け</h2><a id="gldim"></a>
+      <p>
+        　今までに示した入射加群と射影加群の特徴付けを応用して環の大域次元に関する等式を示そう．先ずは関連する諸概念を定義する．
+        <div class="def">
+          <h4>定義</h4>
+          　$A$ を可換環，$M$ を $A$ 加群とする．
+          <ol>
+            <li>
+              $M$ の<b>射影次元</b> (projective dimension) とは，$0\to P_n \to \cdots \to P_1 \to P_0 \to M \to 0$ という形の $M$ の射影分解が存在するような最小の $n$ である．長さ有限の射影分解が存在しない場合，射影次元は $\infty$ であるとする．$M$ の射影次元を $\projd_A M$ と書く．
+            </li>
+            <li>
+              $M$ の<b>入射次元</b> (injective dimension) とは，$0 \to M \to I^0 \to I^1 \to \cdots \to I^n \to 0$ という形の $M$ の入射分解が存在するような最小の $n$ である．長さ有限の入射分解が存在しない場合，入射次元は $\infty$ であるとする．$M$ の入射次元を $\injd_A M$ と書く．
+            </li>
+            <li>
+              $A$ の<b>大域次元</b> (global dimension) を $\sup\{\projd_A M \mid M: \text{$A$ 加群}\}$ と定め，$\gld A$ と書く．
+            </li>
+          </ol>
+        </div>
+        これから示すのは，$\gld A = \sup\{\projd_A A/I \mid I: \text{$A$ のイデアル}\}$ という等式である．
+      </p>
+      <p>
+        　先ずはこの等式の証明の為に必要となる命題を証明しよう．
+        <div class="thm">
+          <h4>命題 5</h4>
+          　可換環 $A$ と $A$ 加群 $M$ と整数 $n$ に対して以下は同値である．
+          <ol>
+            <li>$\projd_A M \leq n$.</li>
+            <li>任意の $i\geq n+1$ と任意の $A$ 加群 $N$ に対して $\ext_A^i(M,N)=0$ である．</li>
+            <li>任意の $A$ 加群 $N$ に対して $\ext_A^{n+1}(M,N)=0$ である．</li>
+            <li>任意の完全列 $0\to Q \to P_{n-1} \cdots \to P_1 \to P_0 \to M \to 0$ に対して，$P_0,\dots,P_{n-1}$ が射影的であれば $Q$ も射影的である．</li>
+          </ol>
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            1. $\imply$ 2. $\imply$ 3.<br>
+            　明らか．
+          </p>
+          <p>
+            3. $\imply$ 4.<br>
+            　4. の条件を満たす完全列を取る．$Q$ の射影分解を $\cdots \to P_{n+1} \to P_n \to Q \to 0$ とすると，
+            $$
+              \begin{align*}
+                \cdots \to P_{n+1} \to P_n \to P_{n-1} \cdots \to P_1 \to P_0 \to M \to 0
+              \end{align*}
+            $$
+            (ここで $P_n \to P_{n-1}$ は $Q$ を経由する射である) は $P$ の射影分解である．従って，任意の $A$ 加群 $N$ に対して
+            $$
+              \begin{align*}
+                \ext_A^1(Q,N) &= H^1(\hom_A(P_{\bullet+n},N))\\
+                &= H^{n+1}(\hom_A(P_{\bullet},N))\\
+                &= \ext_A^{n+1}(M,N)\\
+                &=0
+              \end{align*}
+            $$
+            が成立するので，命題 4 より $Q$ は射影的である．
+          </p>
+          <p>
+            4. $\imply$ 1.<br>
+            　$M$ の射影分解 $\cdots \to P_1 \to P_0 \to M \to 0$ を一つ取り，$Q=\ker(P_n\to P_{n-1})$ とすれば，4. の仮定よりこれは射影的であるので，$0 \to Q \to P_{n-1} \to \cdots \to P_0 \to M \to 0$ が長さ $n$ の $M$ の射影分解を与える．従って $\projd_A M \leq n$ である．
+          </p>
+        </div>
+        同様に，入射次元に関して次の命題が成立する．しかしこの場合は Baer 判定法のお陰で 3. の条件が緩められるということが大切である．
+        <div class="thm">
+          <h4>命題 6</h4>
+          　可換環 $A$ と $A$ 加群 $N$ と整数 $n$ に対して以下は同値である．
+          <ol>
+            <li>$\injd_A N \leq n$.</li>
+            <li>任意の $i\geq n+1$ と任意の $A$ 加群 $M$ に対して $\ext_A^i(M,N)=0$ である．</li>
+            <li>任意の $A$ のイデアル $I$ に対して $\ext_A^{n+1}(A/I,N)=0$ である．</li>
+            <li>任意の完全列 $0\to N \to I^0 \to I^1 \to \cdots \to I^{n-1} \to J \to 0$ に対して，$I^0,\dots,I^{n-1}$ が入射的であれば $J$ も入射的である．</li>
+          </ol>
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　3. $\imply$ 4. のみを示す．それ以外は命題 5 と全く同じである．4. の条件を満たす完全列を取る．$J$ の入射分解を $0\to N \to I^n \to I^{n+1} \to \cdots$ とすると，
+            $$
+              \begin{align*}
+                0\to N \to I^0 \to I^1 \to \cdots \to I^{n-1} \to I^n \to \cdots
+              \end{align*}
+            $$
+            (ここで $I^{n-1} \to I^n$ は $J$ を経由する射である) は $N$ の入射分解である．従って，任意の $A$ のイデアル $I$ に対して
+            $$
+              \begin{align*}
+                \ext_A^1(A/I,N) &= H^1(\hom_A(A/I, I^{\bullet +n}))\\
+                &= H^{n+1}(\hom_A(A/I, I^{\bullet}))\\
+                &= \ext_A^{n+1}(A/I,N)\\
+                &=0
+              \end{align*}
+            $$
+            が成立するので，命題 3 より $J$ は入射的である．
+          </p>
+        </div>
+        以上より次の事実が分かる．
+        <div class="thm">
+          <h4>命題 7</h4>
+          　可換環 $A$ に対して以下の値は全て等しい．
+          <ol>
+            <li>$\gld A = \sup\{\projd_A M \mid M: \text{$A$ 加群}\}$.</li>
+            <li>$\displaystyle \sup_{M,N}\{n \mid \ext_A^n(M,N)\neq 0\}$.</li>
+            <li>$\sup\{\injd_A N \mid N: \text{$A$ 加群}\}$.</li>
+          </ol>
+        </div>
+      </p>
+      <p>
+        　以上の準備の下で所望の命題が証明出来る．
+        <div class="thm">
+          <h4>命題: [Rot, 8.16]</h4>
+          　可換環 $A$ に対して
+          $$
+            \begin{align*}
+              \gld A = \sup\{\projd_A A/I \mid I: \text{$A$ のイデアル}\}
+            \end{align*}
+          $$
+          が成立する．
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　左辺の値を $d$ とする．大域次元の定義より $\gld A \geq d$ は明らかなので，逆向きの不等号を示せば十分である．また，$d=\infty$ の時も明らかなので，$d<\infty$ である時を考える．
+          </p>
+          <p>
+            　命題 7 より，任意の $A$ 加群 $N$ に対して $\injd_A N \leq d$ であることを示せば十分である．任意の $A$ のイデアル $I$ に対して $\projd_A A/I \leq d$ であるので，命題 5 より $\ext_A^{d+1}(A/I, N)=0$ である．このとき命題 6 より $\injd_A N \leq d$ が分かる．
+          </p>
+        </div>
+      </p>
+      <p>
+        　この命題は例えば Noether 環上で大域次元が全ての加群に亘る平坦次元 (平坦分解の長さの最大値) の上限としても特徴付けられることを示す時に使うことが出来る．その証明では Noether 環上の有限生成平坦加群が射影的であるという事実を用いるので，上の命題によって巡回加群のみの考察に帰着出来ることは本質的である．
+      </p>
+
+      <h2>「双対 Baer 判定法」はいつ成立するか</h2><a id="dbc"></a>
+      <p>
+        　ここから先に関して，筆者はまだ証明を読んでいないことを先ず断っておく．先ほど，射影加群に関して「双対 Baer 判定法」は成立しないということを示す反例を挙げた．しかしながら，特別な場合には「双対 Baer 判定法」が成立することもある．然様な環は<b>判定的</b> (testing; 訳語は恐らく存在しないが，取り敢えずここではこう訳すことにする) であると言う．例えば，(つまらない例だが) 体上の加群は必ず単射的なので，判定的である．より一般に，(右) 完全環 (right perfect ring) という環は (右) 判定的であるということが Sandomierski によって示されている (らしい)．ここで，右完全環は次のように定義される環である (ここでは詳しくは立ち入らない)．
+        <div class="def">
+          <h4>定義: 右完全環 ([Faith, 22.29, 22.31A] より抜粋)</h4>
+          　環 $A$ が<b>右完全環</b> (right perfect ring) であるとは，以下の条件 (全て同値である) を満たすことである．
+          <ol>
+            <li>任意の右 $A$ 加群は射影被覆を持つ．</li>
+            <li>$A$ は単項<span style="text-emphasis-style: circle;">左</span>イデアルに関して降鎖条件を満たす．</li>
+            <li>任意の平坦右 $A$ 加群は射影的である．</li>
+          </ol>
+        </div>
+      </p>
+      <p>
+        　すると当然気になるのはその逆は成立するのか，即ち右判定的ならば右完全であるという命題が言えるのかということである．実は，この命題は ZFC から独立であることが証明されているらしい [Tr]．
+      </p>
+
+      <h2>参考文献</h2>
+      <p>
+        <ul>
+          <li>[AtM] Atiyah, M. F., MacDonald, I. G. <cite>Introduction to Commutative Algebra</cite>, Massachusetts: Addison–Weslay, 1969.</li>
+          <li>[Faith] Faith, C. <cite>Algebra II: Ring Theory</cite>, Berlin: Springer-Verlag, 1976.</li>
+          <li>[Tr] Trlifaj, J. "Faith's problem on $R$-projectivity is undecidable" 2017, <a href="https://arxiv.org/abs/1710.10465" target="_blank">arXiv</a>.</li>
+        </ul>
+      </p>
+      
+    </div>
+  </body>
+</html>

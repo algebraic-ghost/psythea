@@ -7,6 +7,23 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian&family=Noto+Serif+JP:wght@600&family=Noto+Serif:ital@0;1&display=swap');
     </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],
+            processEscapes: true,
+            autoload:{},
+            packages:{'[+]':['xypic']}
+          },
+          loader:{
+            load:['[tex]/html','[custom]/xypic.js'],
+            paths:{custom:'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.0/build/'}
+          }
+        }
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   </head>
   <body>
     <div class="header">
@@ -532,6 +549,7 @@
           <h3>数学</h3><a id="original-mathematics" class="anchor"></a>
           <ul>
             <li><a href="memo_20240924.html">Seesaw theorem の証明に関する備忘録 [2024/9/24]</a></li>
+            <li><a href="memo_20241014.html">巡回加群の $\mathrm{Tor}_1, \mathrm{Ext}^1$ による平坦性・入射性・射影性判定 [2024/10/14]</a></li>
           </ul>
     </div>
   </body>
