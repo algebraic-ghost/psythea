@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>«psythea»</title>
+    <link rel="stylesheet" href="https://algebraic-ghost.github.io/psythea/stylesheet.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian&family=Noto+Serif+JP:wght@600&family=Noto+Serif:ital@0;1&display=swap');
+    </style>
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          <script>
+              MathJax = {
+                tex: {
+                  inlineMath: [['$', '$'], ["\\(", "\\)"]],
+                  processEscapes: true,
+                  autoload:{},
+                  packages:{'[+]':['xypic']}
+                },
+                loader:{
+                  load:['[tex]/html','[custom]/xypic.js'],
+                  paths:{custom:'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.0/build/'}
+                }
+              }
+            </script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <iframe src="header.html"></iframe>
+    </div>
+
+    <div class="main">
+      <h1><a href="memo.html">備忘</a> — 全単射な étale 被覆は同型か？ [2024/11/12]</h1>
+      <div hidden>
+      $$
+        \newcommand{\cover}[1]{\mathfrak{#1}}
+        \newcommand{\cat}[1]{\mathbf{#1}}
+        \newcommand{\sheaf}[1]{\mathcal{#1}}
+        \newcommand{\id}{\mathrm{id}}
+        \newcommand{\uncommon}{\nobreak\hspace{0pt}\textsuperscript{\textdagger}}
+        \newcommand{\opp}{\mathrm{op}}
+        \renewcommand{\epsilon}{\varepsilon}
+        \newcommand{\xrightrightarrow}[1]{\overset{#1}{\rightrightarrows}}
+        \newcommand{\isom}[1]{\underset{#1}{\cong}}
+        \newcommand{\projsp}{\mathbb{P}}
+        \newcommand{\imply}{\Rightarrow}
+        \newcommand{\Z}{\mathbb{Z}}
+        \newcommand{\Q}{\mathbb{Q}}
+        \DeclareMathOperator{\obj}{Obj}
+        \DeclareMathOperator{\mor}{Mor}
+        \DeclareMathOperator{\coeq}{Coeq}
+        \DeclareMathOperator{\coeqmor}{coeq}
+        \DeclareMathOperator{\spec}{Spec}
+        \DeclareMathOperator{\gal}{Gal}
+        \DeclareMathOperator{\aut}{Aut}
+        \DeclareMathOperator{\conn}{Conn}
+        \DeclareMathOperator{\supp}{supp}
+        \DeclareMathOperator{\ext}{Ext}
+        \DeclareMathOperator{\tor}{Tor}
+        \DeclareMathOperator{\im}{im}
+        \DeclareMathOperator{\projd}{pd}
+        \DeclareMathOperator{\injd}{id}
+        \DeclareMathOperator{\gld}{gl.dim}
+        \renewcommand{\hom}{\mathop{\mathrm{Hom}}\nolimits}$$
+      </div>
+
+      <p>
+        <div class="thm">
+          <h4>命題</h4>
+          　$Y$ を代数閉体 $k$ 上有限型なスキームとし，$f\colon X\to Y$ を全単射な étale 被覆とする．このとき $f$ は同型射である．
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　先ず，$X, Y$ は Jacobson スキームであることに注意する (Jacobson スキームの定義や一般論は [EGA IV<sub>3</sub>, Chapitre 10] などを参照)．étale かつ radiciel ならば開移入であるので (下記命題参照)，$f$ が radiciel であることを示せば十分である．
+            <div class="thm">
+              <h4>命題: [SGA I, 5.1]</h4>
+              <i>Soit $f\colon X \to Y$ un morphisme de type fini. Pour que $f$ soit une immersion ouverte, il faut et il suffit que ce soit un morphisme  étale et radiciel.</i>
+            </div>
+          </p>
+
+          <p>
+            　$\Delta_{X/Y}\ \colon X \to X \times_Y X$ を対角射とし，これが全射であることを示す．$X \times_Y X$ は Jacobson スキームであるので，$X \times_Y X$ の任意の閉点が $\Delta_{X/Y}$ の像に含まれていることを示せば十分である．$X, Y, X\times_Y X$ は代数閉体 $k$ 上有限型なスキームなので，これらの閉点を考えることは $k$ 有理点を考えることと等しいことに注意する．$X\times_Y X$ の $k$ 有理点は $X$ の $k$ 有理点 $x,y$ で $f(x)=f(y)$ となるものを用いて $(x,y)$ と表されるが，$f$ の全単射性より $f(x)=f(y)$ ならば $x=y$ である．従って $(x,y)$ は $\Delta_{X/Y}$ の像に含まれている．
+          </p>
+        </div>
+      </p>
+
+      <h2>参考文献</h2><a id="reference" class="anchor"></a>
+      <p>
+        <ul>
+          <li>[EGA IV<sub>3</sub>] Grothendieck, A. Éléments de géométrie algébrique : IV. Étude locale des schémas et des morphismes de schémas, Troisième partie. <cite>Publications mathématiques de l’I.H.É.S </cite> <b>28</b>. 1966.</li>
+          <li>[SGA I] ———. <cite>Séminaire de Géométrie Algébrique du Bois Marie : Revêtements étales et groupe fondamental. Lecture notes in mathematics</cite> <b>224</b>, Springer-Verlag. 1971.</li>
+        </ul>
+      </p>
+      
+    </div>
+  </body>
+</html>
