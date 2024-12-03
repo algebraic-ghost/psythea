@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>«psythea»</title>
+    <link rel="stylesheet" href="https://algebraic-ghost.github.io/psythea/stylesheet.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian&family=Noto+Serif+JP:wght@600&family=Noto+Serif:ital@0;1&display=swap');
+    </style>
+          <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          <script>
+              MathJax = {
+                tex: {
+                  inlineMath: [['$', '$'], ["\\(", "\\)"]],
+                  processEscapes: true,
+                  autoload:{},
+                  packages:{'[+]':['xypic']}
+                },
+                loader:{
+                  load:['[tex]/html','[custom]/xypic.js'],
+                  paths:{custom:'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.0/build/'}
+                }
+              }
+            </script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <iframe src="header.html"></iframe>
+    </div>
+
+    <div class="main">
+      <h1><a href="memo.html">備忘</a> — 平面曲線の変曲点 [2024/12/3]</h1>
+      <div hidden>
+      $$
+        \newcommand{\cover}[1]{\mathfrak{#1}}
+        \newcommand{\cat}[1]{\mathbf{#1}}
+        \newcommand{\sheaf}[1]{\mathcal{#1}}
+        \newcommand{\ideal}[1]{\mathfrak{#1}}
+        \newcommand{\id}{\mathrm{id}}
+        \newcommand{\uncommon}{\nobreak\hspace{0pt}\textsuperscript{\textdagger}}
+        \newcommand{\opp}{\mathrm{op}}
+        \renewcommand{\epsilon}{\varepsilon}
+        \newcommand{\xrightrightarrow}[1]{\overset{#1}{\rightrightarrows}}
+        \newcommand{\isom}[1]{\underset{#1}{\cong}}
+        \newcommand{\projsp}{\mathbb{P}}
+        \newcommand{\imply}{\Rightarrow}
+        \newcommand{\Z}{\mathbb{Z}}
+        \newcommand{\Q}{\mathbb{Q}}
+        \DeclareMathOperator{\obj}{Obj}
+        \DeclareMathOperator{\mor}{Mor}
+        \DeclareMathOperator{\coeq}{Coeq}
+        \DeclareMathOperator{\coeqmor}{coeq}
+        \DeclareMathOperator{\spec}{Spec}
+        \DeclareMathOperator{\gal}{Gal}
+        \DeclareMathOperator{\aut}{Aut}
+        \DeclareMathOperator{\conn}{Conn}
+        \DeclareMathOperator{\supp}{supp}
+        \DeclareMathOperator{\length}{length}
+        \DeclareMathOperator{\ext}{Ext}
+        \DeclareMathOperator{\tor}{Tor}
+        \DeclareMathOperator{\im}{im}
+        \DeclareMathOperator{\projd}{pd}
+        \DeclareMathOperator{\injd}{id}
+        \DeclareMathOperator{\gld}{gl.dim}
+        \renewcommand{\hom}{\mathop{\mathrm{Hom}}\nolimits}$$
+      </div>
+
+      <p>
+        　本記事を通して $k$ は代数閉体であるとする．
+        <div class="def">
+          <h4>定義: 変曲点</h4>
+            　$f(x,y) \in k[x,y]$ が定める非特異平面曲線 $C$ 上の点 $(x_0,y_0)$ が $C$ の<b>変曲点</b> (inflection point) であるとは，
+            $$
+              \begin{align*}
+                \length_{k[x,y]_{(x-x_0,y-y_0)}} (k[x,y]/(f(x,y), f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)))_{(x-x_0,y-y_0)} \geq 3
+              \end{align*}
+            $$
+            であることである．$f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)=0$ は $(x_0, y_0)$ に於ける $C$ の接線であることに注意せよ．
+        </div>
+        <div class="thm">
+          <h4>命題</h4>
+          　$f(x,y) \in k[x,y]$ の零点集合 $C$ は非特異平面曲線であるとする．このとき，$(x_0, y_0)$ が $C$ の変曲点である為の必要十分条件は $$f_x(x_0, y_0)f_y(x,y) - f_x(x,y)f_y(x_0,y_0) \in \ideal{m}_{(x_0,y_0)}^2$$ である．但しここで $\ideal{m}_{(x_0,y_0)}$ は $C$ の $(x_0, y_0)$ に於ける極大イデアルである．
+        </div>
+        <div class="proof">
+          <h4>証明</h4>
+          <p>
+            　適宜平行移動することによって $(x_0,y_0) = (0,0)$ としても良い．$\displaystyle f(x,y) = \sum_{m,n \geq 0} a_{mn}x^my^n$ とする．$f(0,0)=0$ なので $a_{00}=0$ である．$f_x(0,0)\neq 0$ 即ち $a_{10}\neq 0$ の場合を考える ($f_y(0,0)\neq 0$ の場合も全く同様にして示せる)．このとき，
+            $$
+              \begin{align*}
+                &(k[x,y]/(f(x,y), f_x(0,0)x+f_y(0,0)y))_{(x,y)}\\
+                &\quad \cong k[y]_{(y)}/\left(f\left(-\frac{a_{01}}{a_{10}}y, y\right)\right)\\
+                &\quad = k[y]_{(y)}/\left(\frac{1}{a_{10}^2}(a_{20}a_{01}^2 - a_{11}a_{10}a_{01} + a_{02}a_{10}^2)y^2 + (\text{3 次以上の項})\right)
+              \end{align*}
+            $$
+            なので $\length_{k[x,y]_{(x,y)}} (k[x,y]/(f(x,y), f_x(0,0)x+f_y(0,0)y))_{(x,y)} \geq 3$ は $a_{20}a_{01}^2 - a_{11}a_{10}a_{01} + a_{02}a_{10}^2 = 0$ と同値である．
+          </p>
+          <p>
+            　他方で，$\displaystyle x-\frac{a_{01}}{a_{10}}y=0$ は $C$ の $(0,0)$ に於ける接線なので $\displaystyle x-\frac{a_{01}}{a_{10}}y \in \ideal{m}_{(0,0)}^2$ であることに注意すると，
+            $$
+              \begin{align*}
+                &f_x(0,0)f_y(x,y) - f_x(x,y)f_y(0,0) \\
+                &\quad = (a_{10}a_{11}-2a_{01}a_{20})x - (a_{01}a_{11}-2a_{10}a_{02})y + \text{(2 次以上の項)}\\
+                &\quad = \frac{2}{a_{10}}(a_{20}a_{01}^2 - a_{11}a_{10}a_{01} + a_{02}a_{10}^2)y + \text{(2 次以上の項)}
+              \end{align*}
+            $$
+            であるので，$f_x(0,0)f_y(x,y) - f_x(x,y)f_y(0,0) \in \ideal{m}_{(0,0)}^2$ も $a_{20}a_{01}^2 - a_{11}a_{10}a_{01} + a_{02}a_{10}^2 = 0$ と同値である．
+          </p>
+        </div>
+
+        </div>
+      </p>
+      
+    </div>
+  </body>
+</html>
