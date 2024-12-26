@@ -62,6 +62,7 @@ body {
   margin: 10px;
   max-width: 800px;
   margin: auto;
+  font-size: large;
 }
 
 .class1 {
@@ -294,6 +295,40 @@ a.anchor {
 }
 
 .schedule td {
+  text-align: left;
+  padding: 0px 5px;
+}
+
+.paradigm table{
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.paradigm th{
+  padding: 3px 5px;
+  text-align: center;
+  border-bottom: 3px double black;
+}
+
+.paradigm tr:nth-of-type(2) td{
+  border-bottom: 1px solid black;
+  text-align: left;
+  padding: 3px 5px;
+}
+
+.paradigm tr{
+  text-align: left;
+  padding: 3px 5px;
+}
+
+.paradigm td:nth-of-type(1){
+  border-right: 1px solid black;
+  text-align: left;
+  padding: 0px 5px;
+}
+
+.paradigm td{
   text-align: left;
   padding: 0px 5px;
 }
