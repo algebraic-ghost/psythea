@@ -40,6 +40,7 @@ body {
     font-family: palatino, kelvinch, "Noto Serif Armenian", serif;
     font-size: large;
     margin: 0px;
+    counter-reset: section2 section3 section4 section5;
 }
 
 .index-main{
@@ -78,7 +79,6 @@ iframe{
   margin: 0px;
   height: 90px;
   width: 100%;
-  position: fixed;
   z-index: 9999;
 }
 
@@ -101,10 +101,6 @@ header{
 
 a{
   text-decoration: none;
-}
-
-p{
-  margin:0 0 2px;
 }
 
 p{
@@ -133,7 +129,6 @@ blockquote{
   border-style: dotted;
   margin: 10pt;
   padding: 10pt;
-  padding-top: 0pt;
 }
 
 .def {
@@ -156,6 +151,22 @@ blockquote{
   padding-bottom: 0pt;
 }
 
+.tableofcontents ol{
+  list-style: none;
+  counter-reset: counter;
+  padding-left: 10px;
+}
+
+.tableofcontents ol li::before {
+  content: counters(counter, ".") ". ";
+  counter-increment:counter;
+}
+
+.tableofcontents ol li ol {
+  list-style:none;
+  counter-reset:counter;
+}
+
 ol{
   padding-top: 5px;
   padding-bottom: 5px;
@@ -174,18 +185,21 @@ h2{
   margin: 5px;
   margin-bottom: 5px;
   margin-left: 10pt;
+  counter-reset: section3;
 }
 
 h3{
   margin: 5px;
   margin-bottom: 5px;
   margin-left: 10pt;
+  counter-reset: section4;
 }
 
 h4{
   margin: 5px;
   margin-bottom: 5px;
   margin-left: 10pt;
+  counter-reset: section5;
 }
 
 h5{
@@ -215,6 +229,7 @@ nav{
   border: 0px;
 }
 
+@media screen and (min-width: 501px) {
 .header-logo{
   font-size: 80px;
   float: left;
@@ -235,7 +250,7 @@ nav{
   padding: 0px 10px;
   font-size: 30px;
 }
-
+}
 @media screen and (max-width: 500px) {
   .header-logo{
     font-size: 40px;
@@ -243,7 +258,7 @@ nav{
     color: white;
     text-align: center;
     margin: auto;
-    width: 100%;
+    width: 100vw;
   }
 
   .header-list{
@@ -251,7 +266,9 @@ nav{
     padding-right: 0px;
     display: inline-block;
     background-color: white;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
   }
   
@@ -259,7 +276,7 @@ nav{
     list-style: none;
     display: inline-block;
     padding: 0px 5px;
-    font-size: 30px;
+    font-size: 25px;
     margin: auto;
   }
 
@@ -301,10 +318,30 @@ figcaption {
   text-align: center
 }
 
+.section_count h2::before{
+  counter-increment: section2;
+  content: counter(section2) ". ";
+}
+
+.section_count h3::before{
+  counter-increment: section3;
+  content: counter(section2) "." counter(section3) ". ";
+}
+
+.section_count h4::before{
+  counter-increment: section4;
+  content: counter(section2) "." counter(section3) "." counter(section4) ". ";
+}
+
+.section_count h5::before{
+  counter-increment: section5;
+  content: counter(section2) "." counter(section3) "." counter(section4) "." counter(section5) ". ";
+}
+
+
+
 a.anchor {
   display: block;
-  padding-top: 140px;
-  margin-top: -140px;
 }
 
 .timetable {
@@ -339,10 +376,13 @@ a.anchor {
   padding: 0px 5px;
 }
 
+
+
 .paradigm table{
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-collapse: collapse;
 }
 
 .paradigm th{
@@ -360,6 +400,7 @@ a.anchor {
 .paradigm tr{
   text-align: left;
   padding: 3px 5px;
+  white-space: nowrap;
 }
 
 .paradigm td:nth-of-type(1){
@@ -371,4 +412,17 @@ a.anchor {
 .paradigm td{
   text-align: left;
   padding: 0px 5px;
+}
+
+.multiple{
+  display: flex;
+  flex-wrap: wrap; /* 必要に応じて改行 */
+  gap: 10px;
+  justify-content: center; /* 横方向の中央揃え */
+  align-items: center;
+}
+
+.indentbox{
+  margin: 10px;
+  margin-left: 50px;
 }
