@@ -1,0 +1,35 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+  <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+</head>
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <p>投稿日：{frontmatter.pubDate.toString().slice(0,10).replace(/-0?/g, "/")}</p>
+
+  <div class="tags">
+    {frontmatter.tags.map((tag: string) => (
+      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+    ))}
+  </div>
+  <slot />
+</BaseLayout>
+
+<style>
+  .figure {
+    display: block;
+	  text-align: center; 
+    margin: 0 auto;
+  }
+</style>
+
+{!frontmatter.showToc && (
+  <style is:global>
+    .toc { display: none; }
+  </style>
+)}
+</head>

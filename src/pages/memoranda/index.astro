@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const allCats = Object.values(import.meta.glob("./index-*.astro", { eager: true }))
+const pageTitle = "メモ";
+---
+<BaseLayout pageTitle={pageTitle}>
+  <ul>
+    {allCats.map((cat: any) => <li><a href={cat.url}>{cat.category}</a></li>)}
+  </ul>
+</BaseLayout>

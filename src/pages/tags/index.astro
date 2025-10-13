@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const pageTitle="タグ一覧";
+const allPosts = Object.values(import.meta.glob('../posts/*.{md,mdx}', { eager: true }));
+const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <ul>
+    {tags.map((tag) => (<li><p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p></li>))}
+  </ul>
+</BaseLayout>
+
+<style>
+  li{
+    list-style:none;
+  }
+</style>

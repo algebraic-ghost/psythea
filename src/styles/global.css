@@ -1,0 +1,226 @@
+html {
+  background-color: #0e0038;
+  color:aliceblue;
+  font-family: palatino, "Cormorant Garamond", "Noto Serif JP", "Noto Serif Armenian", serif;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80ch;
+  padding: 1rem;
+  line-height: 1.5;
+  font-size: large;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color:aqua;
+}
+
+blockquote{
+  background-color: #252140;
+  border-left: 5px solid white;
+  margin-left: 5pt;
+  padding: 10pt;
+}
+
+.c-txt {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.c-txt.line {
+  padding-bottom: 7px;
+  position: relative;
+}
+
+.c-txt.line::before {
+  background: white;
+  content: '';
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform-origin: right top;
+  transform: scale(0, 1);
+  transition: transform .3s;
+}
+
+.c-txt.line:hover::before {
+  transform-origin: center top;
+  transform: scale(1, 1);
+}
+
+figure{
+  text-align: center;
+}
+
+h1 {
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+
+h2, h3, h4{
+  margin: 1rem 0 0 0;
+}
+
+.heading-anchor {
+  visibility:hidden;
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+h2:hover .heading-anchor {
+  visibility:visible;
+}
+h3:hover .heading-anchor {
+  visibility:visible;
+}
+
+/* ナビゲーションのスタイル */
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.nav-links {
+  width: 100%;
+  top: 5rem;
+  left: 48px;
+  display: none;
+  margin: 0;
+  margin-left: 0;
+  text-align: center;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: white;
+}
+
+.expanded {
+  display: unset;
+}
+
+.nav-links a {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+  font-family: "Cormorant Garamond";
+  font-variant-caps: small-caps;
+}
+
+.nav-links a::before{
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform-origin: right top;
+  transform: scale(0, 1);
+  transition: transform .3s;
+}
+
+
+@media screen and (min-width: 636px) {
+  .nav-links {
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
+.tags {
+  color:aqua;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color:aqua;
+  text-decoration: underline;
+  margin: 0.1em;
+  font-size: 1em;
+  padding:0 1em 0 0 ;
+}
+
+.tag::before{
+  content:"#"
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: toc;
+  padding-left: 32px;
+}
+
+.toc ol li {
+  counter-increment: toc;
+}
+
+.toc ol li:before {
+  content: counters(toc, ".") " ";
+}
+
+.wrap{
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+}
+
+
+.proof{
+  border-left: 5px solid #313882;
+  margin: 5pt;
+  margin: top 0pt;
+  padding: 10pt;
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+}
+
+.thm {
+  border-color: white;
+  border-style: dotted;
+  margin: 10pt;
+  padding: 10pt;
+}
+
+.def {
+  border-left: 5px solid white;
+  margin: 5pt;
+  margin: top 0pt;
+  padding: 10pt;
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+}
