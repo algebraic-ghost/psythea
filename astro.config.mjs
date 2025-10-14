@@ -54,7 +54,7 @@ const macros = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://psythea.netlify.app/",
+  site: "https://algebraic-ghost.github.io/psythea",
   integrations: [preact(), mdx({
     remarkPlugins: [remarkMath, remarkGfm],
       rehypePlugins: [
