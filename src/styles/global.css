@@ -98,6 +98,8 @@ h3:hover .heading-anchor {
   background-color: rgb(220, 220, 220);
 }
 
+.katex-display { overflow: auto hidden }
+
 .nav-links {
   width: 100%;
   top: 5rem;
