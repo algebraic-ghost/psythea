@@ -13,4 +13,4 @@ title: "文書"
 
 YouTube に投稿した動画「[Ax–Grothendieck の定理](https://youtu.be/j6OuRGf79zw)」に用いたスライド．「単射な多項式函数 $F\colon\mathbb C^n\to\mathbb C^n$ は全射である」という定理は Ax–Grothendieck の定理と呼ばれ，幾つかの証明が知られている．この動画では Grothendieck による代数幾何学的手法を用いた証明（EGA IV~3~.10.4.11）を紹介した．内容は同書に拠る．
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/j6OuRGf79zw?si=y97_xoX-0DrhECNY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="responsive-iframe" src="https://www.youtube.com/embed/j6OuRGf79zw?si=y97_xoX-0DrhECNY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -158,6 +158,16 @@ h3:hover .heading-anchor {
   }
 }
 
+.responsive-iframe {
+  /* ① 希望する最大の幅と高さを指定 */
+  width: 600px;
+  height: 350px;
+
+  /* ② 画面幅を超えないようにする設定 */
+  max-width: 100%;
+  align-items: center;
+}
+
 .tags {
   color: oklch(0.80 0.1 250);
   display: flex;
