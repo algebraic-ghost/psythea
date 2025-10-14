@@ -1,6 +1,6 @@
 html {
-  background-color: #0e0038;
-  color:aliceblue;
+  background-color: oklch(0.20 0.1 280);
+  color: rgb(220, 220, 220);
   font-family: palatino, "Cormorant Garamond", "Noto Serif JP", "Noto Serif Armenian", serif;
 }
 
@@ -19,18 +19,18 @@ body {
 
 a{
   text-decoration: none;
-  color:aqua;
+  color: oklch(0.80 0.1 250);
 }
 
 blockquote{
-  background-color: #252140;
-  border-left: 5px solid white;
+  background-color: oklch(0.30 0.1 280);
+  border-left: 5px solid rgb(220, 220, 220);
   margin-left: 5pt;
   padding: 10pt;
 }
 
 .c-txt {
-  color: white;
+  color: rgb(220, 220, 220);
   display: inline-block;
   text-decoration: none;
 }
@@ -41,7 +41,7 @@ blockquote{
 }
 
 .c-txt.line::before {
-  background: white;
+  background: rgb(220, 220, 220);
   content: '';
   width: 100%;
   height: 1px;
@@ -95,7 +95,7 @@ h3:hover .heading-anchor {
   width: 40px;
   height: 5px;
   margin-bottom: 10px;
-  background-color: white;
+  background-color: rgb(220, 220, 220);
 }
 
 .nav-links {
@@ -106,11 +106,6 @@ h3:hover .heading-anchor {
   margin: 0;
   margin-left: 0;
   text-align: center;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-  color: white;
 }
 
 .expanded {
@@ -162,13 +157,13 @@ h3:hover .heading-anchor {
 }
 
 .tags {
-  color:aqua;
+  color: oklch(0.80 0.1 250);
   display: flex;
   flex-wrap: wrap;
 }
 
 .tag {
-  color:aqua;
+  color: oklch(0.80 0.1 250);
   text-decoration: underline;
   margin: 0.1em;
   font-size: 1em;
@@ -201,7 +196,7 @@ h3:hover .heading-anchor {
 
 
 .proof{
-  border-left: 5px solid #313882;
+  border-left: 5px solid oklch(0.30 0.1 280);
   margin: 5pt;
   margin: top 0pt;
   padding: 10pt;
@@ -210,14 +205,14 @@ h3:hover .heading-anchor {
 }
 
 .thm {
-  border-color: white;
+  border-color: rgb(220, 220, 220);
   border-style: dotted;
   margin: 10pt;
   padding: 10pt;
 }
 
 .def {
-  border-left: 5px solid white;
+  border-left: 5px solid rgb(220, 220, 220);
   margin: 5pt;
   margin: top 0pt;
   padding: 10pt;
