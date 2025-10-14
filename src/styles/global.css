@@ -22,6 +22,23 @@ a{
   color: oklch(0.80 0.1 250);
 }
 
+a[href^="http://"]::after,
+a[href^="https://"]::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: " \f35d"; /* 外部リンク用アイコン */
+  margin-left: 5px;
+  font-size: 0.8em; /* 少し小さめにするとバランスが良い */
+}
+
+
+a[href$=".pdf"]::after {
+  font-family: "Font Awesome 6 Free"; /* Font Awesomeのフォントファミリーを指定 */
+  font-weight: 900; /* アイコンのスタイル（Solid）を指定 */
+  content: " \f1c1"; /* PDFアイコンのユニコードを指定（前にスペースを入れる） */
+  margin-left: 5px; /* アイコンとテキストの間隔を調整 */
+}
+
 blockquote{
   background-color: oklch(0.30 0.1 280);
   border-left: 5px solid rgb(220, 220, 220);
