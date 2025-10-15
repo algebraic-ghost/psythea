@@ -8,9 +8,36 @@ showToc: true
 
 自分のための粗雑な覚え書きなので誤りが含まれている可能性が高いです．
 
-## 指摘
+## 指摘・行間
 * Lemma 7.9. $FV$ は exact であることを仮定しないといけない．
 * Lemma 8.9. $L \to M^\natural$ の単射性は，$[L \to \mathbb{G}_a^{\mathop{\mathrm{rank}} L}\oplus G]$（$L$ の $i$ 番目の基底 $l_i$ を $(e_i, u(l_i))$ に移す）が $L \to M^\natural$ を経由することから従う．
+* Proposition 8.21. "By the universal property of $M_i^\natural$ this induces morphisms $M_i^\natural \to H_i$, compatible with the morphisms to/from $M^\natural$" の compatibility は少し非自明．以下 $E(-) = \ext^1(-, \mathbb{G}_a)^\vee$ とする．次の図式を考える．
+
+  $$
+  \begin{CD}
+  0 @. 0 @. 0 @. 0 \\
+  @VVV @VVV @VVV @VVV \\
+  V_1 @<<< E(M_1) @>>> E(M) @= E(M)\\
+  @VVV @VVV @VVV @VVV \\
+  H_1 @<{(\natural)}<< M_1^\natural @>{(\natural)}>> G_1 \times_{G} M^\natural @>>> M^\natural\\
+  @VVV @VVV @VVV @VVV \\
+  G_1 @= G_1 @= G_1 @>>> G\\
+  @VVV @VVV @VVV @VVV \\
+  0 @. 0 @. 0 @. 0 \\
+  \end{CD}
+  $$
+
+  ここで $(\natural)$ で表した射は $(-)^\natural$ の普遍性から導かれるものである．$(-)^\natural$ がどのようにして関手になっていたかを思い出すと，今示すべきことは下の図式の可換性である．
+
+  $$
+  \begin{CD}
+  M_1^\natural @>{(\natural)}>> H_1\\
+  @V{(\natural)}VV @VV{\text{given}}V\\
+  G_1 \times_{G} M^\natural @>>> M^\natural
+  \end{CD}
+  $$
+
+  ファイバー積の普遍性から導かれる射 $H_1 \to G_1 \times_{G} M^\natural$ があり，普遍性からこれは左上の三角形を可換にする．右下の三角形はファイバー積の性質より可換である．
 * Proposition 8.21. "$\lie(H_1)_{\C} \to \lie(M^{\natural})_{\C}$ is the pull-back of $H_1 \to M^\natural$ via the exponential map" というのは誤り？　しかしここで主張したいこと（$T_{\mathrm{sing}}(H_1) = L_1 \times_{H_1^{\mathrm{an}}} \lie H_1^{\mathrm{an}}$）自体は diagram chasing で示せるので論証には問題ない（立方体の可換図式で上面，底面，前面が cartesian ならば背面も cartesian）．
 
 ## 命題など
