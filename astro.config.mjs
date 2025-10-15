@@ -49,6 +49,8 @@ const macros = {
   "\\colim": "\\mathop{\\mathrm{colim}}\\limits",
   "\\coker": "\\mathop{\\mathrm{Coker}}\\nolimits",
   "\\ker": "\\mathop{\\mathrm{Ker}}\\nolimits",
+  "\\lie": "\\mathop{\\mathrm{Lie}}\\nolimits",
+  "\\colie": "\\mathop{\\mathrm{coLie}}\\nolimits",
 };
 
 
